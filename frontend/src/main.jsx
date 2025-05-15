@@ -5,6 +5,7 @@ import { store } from './store';
 import App from './App';
 import './index.css';
 import { ThemeProvider } from './ThemeContext';
+console.log("ENV loaded:", import.meta.env);
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {

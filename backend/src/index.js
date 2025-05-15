@@ -2,7 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
 const connectDB = require('../config/db'); 
-const cors = require('cors');
+const corsMiddleware = require('../src/middleware/middleware.cors')
 
 const app = express(); 
 dotenv.config();
@@ -11,7 +11,7 @@ dotenv.config();
 connectDB();
 
 // Global Middlewares
-app.use(cors()); 
+app.use(corsMiddleware);
 app.use(express.json());
 app.use(cookieParser());
 

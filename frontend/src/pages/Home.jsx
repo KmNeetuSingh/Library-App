@@ -71,10 +71,10 @@ const Home = () => {
     }
   };
 
-  // Redirect to register page after closing modal
+  // Close modal and redirect to sign-in page
   const handleModalClose = () => {
     setModalOpen(false);
-    navigate('/register'); // <-- Redirect here
+    navigate('/sign-in');
   };
 
   if (loading) {
@@ -130,9 +130,9 @@ const Home = () => {
         <div className="flex-1 flex flex-col justify-center items-center px-12 py-20 bg-gradient-to-br from-blue-700 via-blue-800 to-gray-900 min-h-[400px] w-full lg:px-32 lg:py-32">
           {books.length > 0 ? (
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 justify-center">
-              {books.map((book) => (
+              {books.map((book, index) => (
                 <motion.div
-                  key={book._id}
+                  key={book._id || index}
                   initial={{ scale: 0.95, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ duration: 0.4, delay: 0.1 }}
@@ -144,10 +144,16 @@ const Home = () => {
           ) : (
             <div className="flex flex-col items-center justify-center h-full">
               <FaBookOpen size={80} className="text-blue-300 dark:text-blue-200 mb-8 opacity-80" />
-              <h2 className="text-3xl font-semibold mb-4">Explore and Organize</h2>
-              <p className="text-xl text-blue-100 dark:text-blue-50 opacity-90">
+              <h2 className="text-3xl font-semibold mb-4 text-white">Explore and Organize</h2>
+              <p className="text-xl text-blue-100 dark:text-blue-50 opacity-90 mb-4">
                 Keep track of what you're reading, want to read, and have finished.
               </p>
+              <button
+                onClick={handleCardClick}
+                className="px-5 py-2 bg-white text-blue-800 rounded shadow hover:bg-blue-50 transition"
+              >
+                Start Exploring
+              </button>
             </div>
           )}
         </div>
