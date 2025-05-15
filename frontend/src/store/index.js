@@ -1,6 +1,6 @@
-import { configureStore } from '@reduxjs/toolkit';
-import authReducer from './slices/authSlice';
-import booksReducer from './slices/booksSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import authReducer from "./slices/authSlice";
+import booksReducer from "./slices/booksSlice";
 
 export const store = configureStore({
   reducer: {
@@ -13,4 +13,4 @@ export const store = configureStore({
     }),
 });
 
-export default store; 
+export default store;

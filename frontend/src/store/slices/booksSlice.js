@@ -1,11 +1,11 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL;
 
 // Async thunks
 export const fetchBooks = createAsyncThunk(
-  'books/fetchBooks',
+  "books/fetchBooks",
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(`${API_URL}/books`);
@@ -17,10 +17,12 @@ export const fetchBooks = createAsyncThunk(
 );
 
 export const fetchMyBooks = createAsyncThunk(
-  'books/fetchMyBooks',
+  "books/fetchMyBooks",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${API_URL}/mybooks`, { withCredentials: true });
+      const response = await axios.get(`${API_URL}/mybooks`, {
+        withCredentials: true,
+      });
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -29,7 +31,7 @@ export const fetchMyBooks = createAsyncThunk(
 );
 
 export const addToMyBooks = createAsyncThunk(
-  'books/addToMyBooks',
+  "books/addToMyBooks",
   async (bookId, { rejectWithValue }) => {
     try {
       const response = await axios.post(
@@ -45,7 +47,7 @@ export const addToMyBooks = createAsyncThunk(
 );
 
 export const updateMyBook = createAsyncThunk(
-  'books/updateMyBook',
+  "books/updateMyBook",
   async ({ bookId, status, rating, review, notes }, { rejectWithValue }) => {
     try {
       const response = await axios.patch(
@@ -61,10 +63,12 @@ export const updateMyBook = createAsyncThunk(
 );
 
 export const removeFromMyBooks = createAsyncThunk(
-  'books/removeFromMyBooks',
+  "books/removeFromMyBooks",
   async (bookId, { rejectWithValue }) => {
     try {
-      await axios.delete(`${API_URL}/mybooks/${bookId}`, { withCredentials: true });
+      await axios.delete(`${API_URL}/mybooks/${bookId}`, {
+        withCredentials: true,
+      });
       return bookId;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -74,10 +78,12 @@ export const removeFromMyBooks = createAsyncThunk(
 
 // New: Async thunk for adding a new book
 export const addBook = createAsyncThunk(
-  'books/addBook',
+  "books/addBook",
   async (bookData, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${API_URL}/books`, bookData, { withCredentials: true });
+      const response = await axios.post(`${API_URL}/books`, bookData, {
+        withCredentials: true,
+      });
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -93,7 +99,7 @@ const initialState = {
 };
 
 const booksSlice = createSlice({
-  name: 'books',
+  name: "books",
   initialState,
   reducers: {
     clearError: (state) => {
@@ -114,7 +120,7 @@ const booksSlice = createSlice({
       })
       .addCase(fetchBooks.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload?.message || 'Failed to fetch books';
+        state.error = action.payload?.message || "Failed to fetch books";
       })
       // Fetch My Books
       .addCase(fetchMyBooks.pending, (state) => {
@@ -127,7 +133,7 @@ const booksSlice = createSlice({
       })
       .addCase(fetchMyBooks.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload?.message || 'Failed to fetch your books';
+        state.error = action.payload?.message || "Failed to fetch your books";
       })
       // Add to My Books
       .addCase(addToMyBooks.fulfilled, (state, action) => {
@@ -144,7 +150,9 @@ const booksSlice = createSlice({
       })
       // Remove from My Books
       .addCase(removeFromMyBooks.fulfilled, (state, action) => {
-        state.myBooks = state.myBooks.filter(book => book._id !== action.payload);
+        state.myBooks = state.myBooks.filter(
+          (book) => book._id !== action.payload
+        );
       })
       // New: Add Book cases
       .addCase(addBook.pending, (state) => {
@@ -159,10 +167,10 @@ const booksSlice = createSlice({
       })
       .addCase(addBook.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload?.message || 'Failed to add book';
+        state.error = action.payload?.message || "Failed to add book";
       });
   },
 });
 
 export const { clearError } = booksSlice.actions;
-export default booksSlice.reducer; 
+export default booksSlice.reducer;
