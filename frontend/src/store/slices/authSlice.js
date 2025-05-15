@@ -1,26 +1,28 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-const API_URL = "/api/auth";
+const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = `${baseURL}/auth`;
+
+console.log("Auth API Base URL:", API_URL);
 
 // Get user from localStorage (initial state only, will be replaced by /me check)
-const user = JSON.parse(localStorage.getItem("user"));
+const user = JSON.parse(localStorage.getItem('user'));
 
 const initialState = {
   user: user || null,
   isLoading: false,
   error: null,
-  isAuthenticated: !!user, // Derive isAuthenticated from user presence
+  isAuthenticated: !!user,
 };
 
 // Register user
 export const register = createAsyncThunk(
-  "auth/register",
+  'auth/register',
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${API_URL}/register`, userData);
-      // localStorage.setItem('user', JSON.stringify(response.data)); // Remove local storage storage
-      return response.data.user; // Assuming backend returns { user: userData, token: ... }
+      const response = await axios.post(`${API_URL}/register`, userData, { withCredentials: true });
+      return response.data.user;
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
@@ -29,45 +31,41 @@ export const register = createAsyncThunk(
 
 // Login user
 export const login = createAsyncThunk(
-  "auth/login",
+  'auth/login',
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${API_URL}/login`, userData);
-      // localStorage.setItem('user', JSON.stringify(response.data)); // Remove local storage storage
-      return response.data.user; // Assuming backend returns { user: userData, token: ... }
+      const response = await axios.post(`${API_URL}/login`, userData, { withCredentials: true });
+      return response.data.user;
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
   }
 );
 
-// Load user from cookie (check session on app load)
+// Load user from session cookie
 export const loadUser = createAsyncThunk(
-  "auth/loadUser",
+  'auth/loadUser',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${API_URL}/me`);
-      return response.data.user; // Assuming backend returns { user: userData }
+      const response = await axios.get(`${API_URL}/me`, { withCredentials: true });
+      return response.data.user;
     } catch (error) {
-      // If /me fails, user is not authenticated
       return rejectWithValue(error.response.data);
     }
   }
 );
 
 const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
   reducers: {
     logout: (state) => {
-      // localStorage.removeItem('user'); // Remove local storage removal
       state.user = null;
       state.isAuthenticated = false;
       state.error = null;
-      // Call backend logout endpoint to clear cookie
       axios
-        .post(`${API_URL}/logout`)
-        .catch((err) => console.error("Logout backend call failed:", err));
+        .post(`${API_URL}/logout`, {}, { withCredentials: true })
+        .catch((err) => console.error('Logout backend call failed:', err));
     },
     clearError: (state) => {
       state.error = null;
@@ -75,7 +73,6 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // Register cases
       .addCase(register.pending, (state) => {
         state.isLoading = true;
         state.error = null;
@@ -90,9 +87,8 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.user = null;
         state.isAuthenticated = false;
-        state.error = action.payload?.message || "Registration failed";
+        state.error = action.payload?.message || 'Registration failed';
       })
-      // Login cases
       .addCase(login.pending, (state) => {
         state.isLoading = true;
         state.error = null;
@@ -107,9 +103,8 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.user = null;
         state.isAuthenticated = false;
-        state.error = action.payload?.message || "Login failed";
+        state.error = action.payload?.message || 'Login failed';
       })
-      // Load user cases
       .addCase(loadUser.pending, (state) => {
         state.isLoading = true;
         state.error = null;
@@ -124,7 +119,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.user = null;
         state.isAuthenticated = false;
-        state.error = action.payload?.message || "Authentication failed";
+        state.error = action.payload?.message || 'Authentication failed';
       });
   },
 });
