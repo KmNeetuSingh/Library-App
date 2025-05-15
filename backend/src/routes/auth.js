@@ -37,8 +37,9 @@ router.post('/register', async (req, res) => {
     // Set cookie
     res.cookie('token', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+      secure: process.env.NODE_ENV === 'production', // must be true on production (HTTPS)
+      sameSite: 'None', // ✅ allow cross-origin cookies
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
     res.status(201).json({
@@ -85,7 +86,8 @@ router.post('/login', async (req, res) => {
     res.cookie('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+      sameSite: 'None', // ✅ allow cross-origin cookies
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
     res.json({
@@ -102,7 +104,11 @@ router.post('/login', async (req, res) => {
 // @desc    Logout user
 // @access  Private
 router.post('/logout', auth, (req, res) => {
-  res.clearCookie('token');
+  res.clearCookie('token', {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'None'
+  });
   res.json({ message: 'Logged out successfully' });
 });
 
@@ -113,4 +119,4 @@ router.get('/me', auth, (req, res) => {
   res.json({ user: req.user.getPublicProfile() });
 });
 
-module.exports = router; 
+module.exports = router;

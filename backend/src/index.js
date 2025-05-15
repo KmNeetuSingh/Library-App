@@ -14,6 +14,8 @@ connectDB();
 app.use(corsMiddleware);
 app.use(express.json());
 app.use(cookieParser());
+app.set('trust proxy', 1); 
+
 
 // Routes
 const authRoutes = require('./routes/auth');

@@ -1,15 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { store } from './store';
-import App from './App';
-import './index.css';
-import { ThemeProvider } from './ThemeContext';
-console.log("ENV loaded:", import.meta.env);
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
+import { store } from "./store";
+import App from "./App";
+import "./index.css";
+import { ThemeProvider } from "./ThemeContext";
+import axios from "axios";
 
-const rootElement = document.getElementById('root');
+axios.defaults.withCredentials = true; // ✅ global setting
+
+const rootElement = document.getElementById("root");
 if (!rootElement) {
-  throw new Error('Root element not found');
+  throw new Error("Root element not found");
 }
 
 ReactDOM.createRoot(rootElement).render(

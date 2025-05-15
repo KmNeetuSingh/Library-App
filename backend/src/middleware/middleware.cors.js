@@ -1,21 +1,21 @@
-// src/middleware/middleware.cors.js
 const cors = require('cors');
 
 const allowedOrigins = [
-  'https://library-app-two-nu.vercel.app'
+  'http://localhost:5173',
+  'https://library-ny0oitjw7-neetsins-projects.vercel.app'
 ];
 
 const corsOptions = {
   origin: function (origin, callback) {
+    // Allow tools like Postman (no origin), and your allowed origins
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
     }
   },
-  credentials: true,
+  credentials: true, // ✅ This allows cookies to be sent
+  optionsSuccessStatus: 200, // Prevents issues with legacy browsers
 };
 
-const corsMiddleware = cors(corsOptions); 
-
-module.exports = corsMiddleware;
+module.exports = cors(corsOptions);
