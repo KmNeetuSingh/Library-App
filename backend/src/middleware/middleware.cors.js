@@ -2,7 +2,6 @@
 const cors = require('cors');
 
 const allowedOrigins = [
-  'http://localhost:5173',
   'https://library-app-two-nu.vercel.app/'
 ];
 
