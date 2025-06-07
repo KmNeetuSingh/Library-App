@@ -1,18 +1,18 @@
 # 📚 My Library – A MERN Stack Book Tracking Application
 
 ![Banner](https://img.shields.io/badge/MERN-FullStack-blueviolet)
-![License](https://img.shields.io/badge/license-MIT-green)
-![Status](https://img.shields.io/badge/status-Active-brightgreen)
+<!-- ![License](https://img.shields.io/badge/license-MIT-green) -->
+<!-- ![Status](https://img.shields.io/badge/status-Active-brightgreen) -->
 
 **My Library** is a full-stack web application built using the MERN stack (MongoDB, Express.js, React.js, Node.js) that allows users to track their reading progress, rate books, and maintain a personal reading list—all in a sleek and responsive interface.
 
 ---
 
-## 🎥 Demo
+## 🎥Video Demo
 
 https://github.com/user-attachments/assets/2e1d97d8-9ae3-4ed3-81d0-4fc49f47b3e2
 
-> 📌 _This video demonstrates the core features and user experience of the app._
+<!-- > 📌 _This video demonstrates the core features and user experience of the app._ -->
 
 ---
 
@@ -130,24 +130,5 @@ npm start
 - Uses **Framer Motion** for delightful UI transitions.
 - JWT-based login ensures **secure, tokenized authentication**.
 - Minimalist and mobile-first UI using **Tailwind CSS**.
-
----
-
-## 🤝 Contributing
-
-Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
----
-
-## 👩‍💻 Developed by
-
-**Neetu Singh**
-Passionate MERN Stack Developer | [LinkedIn](https://linkedin.com/in/kmneetusingh)
 
 ---
