@@ -8,7 +8,7 @@
 
 ---
 
-## 🎥Video Demo
+## 🎥 Video Demo
 
 https://github.com/user-attachments/assets/2e1d97d8-9ae3-4ed3-81d0-4fc49f47b3e2
 
@@ -57,7 +57,7 @@ library-app/
 ├── frontend/     # React.js client
 └── backend/      # Express.js API
 
-```
+````
 
 ---
 
@@ -76,7 +76,7 @@ library-app/
 ```bash
 git clone https://github.com/yourusername/library-app.git
 cd library-app
-```
+````
 
 2. **Install Frontend Dependencies**
 
@@ -126,9 +126,17 @@ npm start
 
 ## 📌 Unique Highlights
 
-- Built with **developer scalability** and **UX best practices** in mind.
-- Uses **Framer Motion** for delightful UI transitions.
-- JWT-based login ensures **secure, tokenized authentication**.
-- Minimalist and mobile-first UI using **Tailwind CSS**.
+* Built with **developer scalability** and **UX best practices** in mind.
+* Uses **Framer Motion** for delightful UI transitions.
+* JWT-based login ensures **secure, tokenized authentication**.
+* Minimalist and mobile-first UI using **Tailwind CSS**.
 
 ---
+
+## 🙏 Thanks for Visiting!
+
+If you found this project helpful, consider giving it a ⭐ on GitHub!
+
+---
+
+```
