@@ -135,4 +135,8 @@ npm start
 
 ## 🙏 Thanks for Visiting!
 
+<<<<<<< HEAD
 If you found this project helpful, consider giving it a ⭐ on GitHub!
+=======
+If you found this project helpful, consider giving it a ⭐ on GitHub!
+>>>>>>> acaf938c6275d5c40bcba44b4fe83bdc1a5d1cd9
