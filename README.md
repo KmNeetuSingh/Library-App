@@ -1,4 +1,4 @@
-# 📚 My Library – A MERN Stack Book Tracking Application
+ # 📚 My Library – A MERN Stack Book Tracking Application
 
 ![Banner](https://img.shields.io/badge/MERN-FullStack-blueviolet)
 <!-- ![License](https://img.shields.io/badge/license-MIT-green) -->
@@ -135,8 +135,4 @@ npm start
 
 ## 🙏 Thanks for Visiting!
 
-<<<<<<< HEAD
 If you found this project helpful, consider giving it a ⭐ on GitHub!
-=======
-If you found this project helpful, consider giving it a ⭐ on GitHub!
->>>>>>> acaf938c6275d5c40bcba44b4fe83bdc1a5d1cd9

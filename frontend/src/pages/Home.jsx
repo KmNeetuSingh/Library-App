@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchBooks } from '../store/slices/booksSlice';
-import { FaBookOpen } from 'react-icons/fa';
-import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchBooks } from "../store/slices/booksSlice";
+import { FaBookOpen } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 // Modal Component
 const Modal = ({ title, message, onClose }) => (
   <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-sm p-6">
-      <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">{title}</h2>
+      <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+        {title}
+      </h2>
       <p className="mb-6 text-gray-700 dark:text-gray-300">{message}</p>
       <button
         onClick={onClose}
@@ -28,8 +31,8 @@ const BookCard = ({ book, onClick }) => (
     className="cursor-pointer rounded-xl overflow-hidden shadow-lg bg-white dark:bg-gray-800"
     initial={{ scale: 1 }}
     whileHover={{ scale: 1.05, y: -10 }}
-    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-    style={{ minWidth: '260px', maxWidth: '280px' }}
+    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+    style={{ minWidth: "260px", maxWidth: "280px" }}
   >
     <div className="w-full h-64 overflow-hidden relative">
       <img
@@ -41,9 +44,7 @@ const BookCard = ({ book, onClick }) => (
     </div>
     <div className="p-4 text-gray-900 dark:text-gray-100">
       <div className="relative overflow-hidden whitespace-nowrap h-8">
-        <p className="text-xl font-semibold inline-block">
-          {book.title}
-        </p>
+        <p className="text-xl font-semibold inline-block">{book.title}</p>
       </div>
       <p className="text-sm text-gray-600 dark:text-gray-300">{book.author}</p>
     </div>
@@ -67,14 +68,14 @@ const Home = () => {
     if (!isSignedIn) {
       setModalOpen(true);
     } else {
-      navigate('/my-books');
+      navigate("/my-books");
     }
   };
 
   // Close modal and redirect to sign-in page
   const handleModalClose = () => {
     setModalOpen(false);
-    navigate('/sign-in');
+    navigate("/sign-in");
   };
 
   if (loading) {
@@ -82,7 +83,9 @@ const Home = () => {
       <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-800">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto dark:border-purple-400"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-300">Loading books...</p>
+          <p className="mt-4 text-gray-600 dark:text-gray-300">
+            Loading books...
+          </p>
         </div>
       </div>
     );
@@ -92,7 +95,9 @@ const Home = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-800">
         <div className="text-center">
-          <div className="text-red-600 dark:text-red-400 text-lg mb-4">Error loading books</div>
+          <div className="text-red-600 dark:text-red-400 text-lg mb-4">
+            Error loading books
+          </div>
           <p className="text-gray-600 dark:text-gray-300">{error}</p>
         </div>
       </div>
@@ -101,6 +106,20 @@ const Home = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Home | Your Library App</title>
+        <meta
+          name="description"
+          content="Discover, track, and manage your personal book collection with ease."
+        />
+        <meta
+          name="keywords"
+          content="books, library, personal collection, React, reading tracker"
+        />
+        <meta 
+          name="author"
+          content="Neetu Singh" />
+      </Helmet>
       <div className="min-h-screen w-full flex flex-col lg:flex-row bg-gray-50 dark:bg-gray-900">
         {/* Left Section */}
         <div className="flex-1 flex flex-col justify-center items-center px-12 py-20 bg-white dark:bg-gray-800 lg:px-32 lg:py-32">
@@ -143,10 +162,16 @@ const Home = () => {
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center h-full">
-              <FaBookOpen size={80} className="text-blue-300 dark:text-blue-200 mb-8 opacity-80" />
-              <h2 className="text-3xl font-semibold mb-4 text-white">Explore and Organize</h2>
+              <FaBookOpen
+                size={80}
+                className="text-blue-300 dark:text-blue-200 mb-8 opacity-80"
+              />
+              <h2 className="text-3xl font-semibold mb-4 text-white">
+                Explore and Organize
+              </h2>
               <p className="text-xl text-blue-100 dark:text-blue-50 opacity-90 mb-4">
-                Keep track of what you're reading, want to read, and have finished.
+                Keep track of what you're reading, want to read, and have
+                finished.
               </p>
               <button
                 onClick={handleCardClick}
