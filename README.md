@@ -130,9 +130,3 @@ npm start
 * Uses **Framer Motion** for delightful UI transitions.
 * JWT-based login ensures **secure, tokenized authentication**.
 * Minimalist and mobile-first UI using **Tailwind CSS**.
-
----
-
-## 🙏 Thanks for Visiting!
-
-If you found this project helpful, consider giving it a ⭐ on GitHub!
