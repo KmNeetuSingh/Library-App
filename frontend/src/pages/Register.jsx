@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import { register, clearError } from '../store/slices/authSlice';
 import { FaBookOpen } from 'react-icons/fa';
-
+//Reagistration feature .........
 const Register = () => {
   const [formData, setFormData] = useState({
     email: '',
@@ -160,7 +160,7 @@ const Register = () => {
             </button>
           </form>
           <p className="mt-6 text-center text-gray-600 dark:text-gray-400">
-            Already have an account?{' '}
+            Already have a creditnal{' '}
             <Link to="/login" className="text-blue-600 hover:text-blue-700 font-medium dark:text-blue-400 dark:hover:text-blue-500">
               Sign In
             </Link>
