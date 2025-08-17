@@ -8,7 +8,7 @@
 
 ## 🎥 **Live Demo**
 
-🔗 [https://github.com/user-attachments/assets/2e1d97d8-9ae3-4ed3-81d0-4fc49f47b3e2](https://github.com/user-attachments/assets/2e1d97d8-9ae3-4ed3-81d0-4fc49f47b3e2)
+https://github.com/user-attachments/assets/2e1d97d8-9ae3-4ed3-81d0-4fc49f47b3e2
 
 ---
 
@@ -79,6 +79,3 @@ Building **My Library** provided hands-on experience in:
 ---
 
 🔥 **My Library = where books meet tech, making reading more interactive, trackable, and fun.**
-
-
-Would you like me to also create a **short 4–5 line founder pitch** for **My Library** (like an elevator pitch you could post on LinkedIn/portfolio)?
